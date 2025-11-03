@@ -52,7 +52,7 @@ body {
   z-index: 1000;
   background: transparent;
   backdrop-filter: blur(10px);
-  transition: all 0.4s ease;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navbar.scrolled {
@@ -68,12 +68,13 @@ body {
   max-width: 1440px;
   margin: 0 auto;
   gap: 2rem;
+  width: 100%;
 }
 
 .logo {
   height: 50px;
   width: auto;
-  transition: filter 0.4s ease;
+  transition: filter 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navbar.scrolled .logo {
@@ -84,6 +85,7 @@ body {
   display: flex;
   gap: 2rem;
   align-items: center;
+  flex: 1;
 }
 
 .nav-links a {
@@ -91,11 +93,11 @@ body {
   text-decoration: none;
   font-weight: 700;
   font-size: 18px;
-  transition: color 0.4s ease;
+  transition: color 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navbar.scrolled .nav-links a {
-  color: var(--primary-dark-red);
+  color: var(--text-light);
 }
 
 .nav-links a:hover {
@@ -106,6 +108,7 @@ body {
   display: flex;
   gap: 1.5rem;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .btn-join {
@@ -117,7 +120,8 @@ body {
   font-weight: 800;
   font-size: 20px;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
 }
 
 .navbar.scrolled .btn-join {
@@ -139,12 +143,13 @@ body {
   font-weight: 800;
   font-size: 20px;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
 }
 
 .navbar.scrolled .btn-login {
-  color: var(--primary-dark-red);
-  border-color: var(--primary-dark-red);
+  color: var(--text-light);
+  border-color: var(--text-light);
 }
 
 .btn-login:hover {
@@ -161,7 +166,7 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  margin-top: 80px;
+  padding-top: 80px;
 }
 
 .hero-image {
