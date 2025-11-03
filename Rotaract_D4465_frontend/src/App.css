@@ -68,12 +68,7 @@ body {
 .logo {
   height: 45px;
   width: auto;
-  transition: filter 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   flex-shrink: 0;
-}
-
-.navbar.scrolled .logo {
-  filter: brightness(0) invert(1);
 }
 
 .nav-links {
