@@ -1,7 +1,7 @@
 /* CSS Variables for consistent styling */
 :root {
   --primary-red: #EE1D52;
-  --primary-dark-red: #B71041;
+  --primary-dark-red: #C41B4C;
   --primary-pink: #EFCBD4;
   --text-dark: #22272F;
   --text-light: #FFF;
@@ -50,8 +50,14 @@ body {
   left: 0;
   width: 100%;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.05);
+  background: transparent;
   backdrop-filter: blur(10px);
+  transition: all 0.4s ease;
+}
+
+.navbar.scrolled {
+  background: var(--primary-dark-red);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
 }
 
 .nav-container {
@@ -67,6 +73,11 @@ body {
 .logo {
   height: 50px;
   width: auto;
+  transition: filter 0.4s ease;
+}
+
+.navbar.scrolled .logo {
+  filter: brightness(0) invert(1);
 }
 
 .nav-links {
@@ -80,7 +91,11 @@ body {
   text-decoration: none;
   font-weight: 700;
   font-size: 18px;
-  transition: opacity 0.3s;
+  transition: color 0.4s ease;
+}
+
+.navbar.scrolled .nav-links a {
+  color: var(--primary-dark-red);
 }
 
 .nav-links a:hover {
@@ -102,7 +117,13 @@ body {
   font-weight: 800;
   font-size: 20px;
   cursor: pointer;
-  transition: transform 0.3s;
+  transition: all 0.3s;
+}
+
+.navbar.scrolled .btn-join {
+  background: transparent;
+  color: var(--text-light);
+  border: 2px solid var(--text-light);
 }
 
 .btn-join:hover {
@@ -121,6 +142,11 @@ body {
   transition: all 0.3s;
 }
 
+.navbar.scrolled .btn-login {
+  color: var(--primary-dark-red);
+  border-color: var(--primary-dark-red);
+}
+
 .btn-login:hover {
   background: var(--text-light);
   color: var(--primary-dark-red);
@@ -135,6 +161,7 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  margin-top: 80px;
 }
 
 .hero-image {
@@ -342,59 +369,103 @@ body {
   line-height: 1.6;
 }
 
-/* Values Section */
+/* Values Section - Flip Cards */
 .values-section {
   padding: var(--spacing-xl) var(--spacing-md);
   max-width: 1440px;
   margin: 0 auto;
+  background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
+}
+
+.values-container {
+  perspective: 1000px;
 }
 
 .values-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  gap: 3rem;
   margin-top: var(--spacing-lg);
 }
 
+.value-card-wrapper {
+  height: 400px;
+}
+
 .value-card {
-  background: var(--bg-light);
-  border: 1px solid var(--gray-border);
-  border-radius: var(--border-radius-md);
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.value-card-wrapper:hover .value-card {
+  transform: rotateY(180deg);
+}
+
+.value-card-inner,
+.value-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: var(--spacing-lg) var(--spacing-md);
+  border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-card);
+}
+
+.value-card-inner {
+  background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-dark-red) 100%);
+  color: var(--text-light);
   text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.value-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.3);
+.value-back {
+  background: var(--bg-light);
+  color: var(--text-dark);
+  transform: rotateY(180deg);
+  border: 2px solid var(--primary-red);
+  text-align: center;
 }
 
-.value-icon {
+.value-icon-container {
+  font-size: 4rem;
   margin-bottom: var(--spacing-md);
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }
 
 .value-title {
   font-family: var(--font-primary);
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 700;
-  color: var(--primary-red);
   margin-bottom: var(--spacing-sm);
 }
 
 .value-description {
   font-family: var(--font-secondary);
   font-size: 1rem;
-  color: var(--text-dark);
-  opacity: 0.8;
   line-height: 1.6;
 }
 
-/* 7 Rotary Focuses Section */
+/* 7 Rotary Focuses Section - Interactive Grid */
 .focuses-section {
   padding: var(--spacing-xl) var(--spacing-md);
-  background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
+  background: linear-gradient(135deg, #f0f0f0 0%, #fff 100%);
+}
+
+.focuses-container {
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
 .focuses-intro {
@@ -409,10 +480,8 @@ body {
 
 .focuses-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
-  max-width: 1440px;
-  margin: 0 auto;
 }
 
 .focus-card {
@@ -421,9 +490,14 @@ body {
   border-radius: var(--border-radius-md);
   padding: var(--spacing-lg);
   text-align: center;
-  transition: all 0.3s;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
   overflow: hidden;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .focus-card::before {
@@ -433,8 +507,9 @@ body {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(238, 29, 82, 0.1), transparent);
-  transition: left 0.5s;
+  background: linear-gradient(90deg, transparent, rgba(238, 29, 82, 0.15), transparent);
+  transition: left 0.6s;
+  z-index: 0;
 }
 
 .focus-card:hover::before {
@@ -442,13 +517,47 @@ body {
 }
 
 .focus-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 30px rgba(238, 29, 82, 0.3);
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(238, 29, 82, 0.35);
+  border-color: var(--primary-dark-red);
 }
 
-.focus-icon {
-  font-size: 4rem;
-  margin-bottom: var(--spacing-md);
+.focus-card.expanded {
+  background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-dark-red) 100%);
+  color: var(--text-light);
+  min-height: 350px;
+}
+
+.focus-card.expanded .focus-title {
+  color: var(--text-light);
+}
+
+.focus-card.expanded .focus-description {
+  color: var(--text-light);
+  opacity: 1;
+}
+
+.focus-card-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.focus-icon-large {
+  font-size: 3.5rem;
+  transition: transform 0.3s;
+  display: block;
+}
+
+.focus-card:hover .focus-icon-large {
+  transform: scale(1.2) rotate(5deg);
+}
+
+.focus-card.expanded .focus-icon-large {
+  transform: scale(1.15);
 }
 
 .focus-title {
@@ -456,11 +565,10 @@ body {
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--primary-red);
-  margin-bottom: var(--spacing-sm);
+  transition: color 0.3s;
   min-height: 3rem;
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 .focus-description {
@@ -469,6 +577,12 @@ body {
   color: var(--text-dark);
   opacity: 0.8;
   line-height: 1.6;
+  transition: all 0.3s;
+  max-height: 100px;
+}
+
+.focus-card.expanded .focus-description {
+  max-height: 200px;
 }
 
 /* Mission and Vision Section */
@@ -530,89 +644,142 @@ body {
 
 /* Footer */
 .footer {
-  position: relative;
-  background: var(--bg-dark);
+  background: linear-gradient(135deg, var(--primary-dark-red) 0%, var(--text-dark) 100%);
   color: var(--text-light);
-  padding: var(--spacing-xl) var(--spacing-md) var(--spacing-md);
   margin-top: var(--spacing-xl);
 }
 
-.footer-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.1;
+.footer-wrapper {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: var(--spacing-xl) var(--spacing-md);
 }
 
-.footer-content {
-  position: relative;
-  max-width: 1200px;
-  margin: 0 auto;
+.footer-top {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
   margin-bottom: var(--spacing-lg);
 }
 
-.footer-logo-section {
+.footer-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-branding {
+  align-items: center;
   text-align: center;
 }
 
+.footer-logo-box {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: var(--border-radius-md);
+  margin-bottom: var(--spacing-md);
+  backdrop-filter: blur(10px);
+}
+
 .footer-logo {
-  height: 60px;
+  height: 80px;
   width: auto;
-  margin-bottom: 1rem;
+  filter: brightness(0) invert(1);
+}
+
+.footer-brand-text {
+  font-family: var(--font-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-xs);
 }
 
 .footer-tagline {
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-family: var(--font-secondary);
+  font-size: 1rem;
   opacity: 0.9;
+  font-weight: 300;
+}
+
+.footer-heading {
+  font-family: var(--font-primary);
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-sm);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .footer-links {
-  display: flex;
-  gap: 3rem;
-  flex-wrap: wrap;
-}
-
-.footer-column {
+  list-style: none;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
-.footer-column h4 {
-  font-size: 1.125rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-
-.footer-column a {
+.footer-links a {
   color: var(--text-light);
   text-decoration: none;
-  opacity: 0.8;
-  transition: opacity 0.3s;
+  opacity: 0.85;
+  transition: all 0.3s;
+  font-family: var(--font-secondary);
+  font-weight: 300;
 }
 
-.footer-column a:hover {
+.footer-links a:hover {
   opacity: 1;
+  padding-left: 0.5rem;
 }
 
-.footer-column p {
-  opacity: 0.8;
-  font-size: 0.95rem;
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  font-family: var(--font-secondary);
+  opacity: 0.85;
+  margin-bottom: var(--spacing-md);
+}
+
+.footer-socials {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  color: var(--text-light);
+  text-decoration: none;
+  transition: all 0.3s;
+  font-weight: 700;
+  font-size: 0.9rem;
+  backdrop-filter: blur(10px);
+}
+
+.social-link:hover {
+  background: var(--primary-red);
+  transform: translateY(-3px);
+}
+
+.footer-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  margin-bottom: var(--spacing-lg);
 }
 
 .footer-bottom {
-  position: relative;
   text-align: center;
-  padding-top: var(--spacing-md);
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
   opacity: 0.8;
+  font-family: var(--font-secondary);
+  font-size: 0.95rem;
 }
 
 /* Responsive Design */
@@ -623,10 +790,11 @@ body {
   
   .values-grid {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
   }
   
   .focuses-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
 }
 
@@ -649,6 +817,7 @@ body {
   
   .hero {
     min-height: 500px;
+    margin-top: 120px;
   }
   
   .dashboard-tabs {
@@ -664,8 +833,25 @@ body {
     grid-template-columns: 1fr;
   }
   
+  .footer-top {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .footer-branding {
+    order: -1;
+  }
+  
   .footer-links {
-    flex-direction: column;
+    align-items: center;
+  }
+  
+  .footer-contact {
+    align-items: center;
+  }
+  
+  .footer-socials {
+    justify-content: center;
   }
 }
 
@@ -681,10 +867,19 @@ body {
   .values-grid,
   .focuses-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
   
   .mission-vision-container {
     grid-template-columns: 1fr;
     gap: 2rem;
+  }
+  
+  .value-card-wrapper {
+    height: 350px;
+  }
+  
+  .footer-wrapper {
+    padding: var(--spacing-lg) var(--spacing-sm);
   }
 }
