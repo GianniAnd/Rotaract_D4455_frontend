@@ -5,6 +5,7 @@ const App = () => {
   const [activeTab, setActiveTab] = useState<'members' | 'clubs' | 'projects'>('members');
   const [navbarScrolled, setNavbarScrolled] = useState(false);
   const [expandedFocus, setExpandedFocus] = useState<number | null>(null);
+  const [currentFocus, setCurrentFocus] = useState(0);
 
   const dashboardData = {
     members: { count: '1,200+', label: 'Miembros Activos', icon: '👥' },
@@ -57,6 +58,14 @@ const App = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentFocus((prev) => (prev + 1) % rotaryFocuses.length);
+    }, 10000);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -211,41 +220,66 @@ const App = () => {
         </div>
       </section>
 
-      {/* 7 Rotary Focuses - Circular Design */}
+      {/* 7 Rotary Focuses - Rotating Gear with Info Panel */}
       <section className="focuses-section" id="proyectos">
         <h2 className="section-title-dark">Las 7 Áreas de Enfoque de Rotary</h2>
         <p className="focuses-intro">
           Nuestros proyectos se alinean con las áreas prioritarias de Rotary International para crear un cambio sostenible.
         </p>
         <div className="focuses-container">
-          <div className="circular-focuses">
-            <div className="focus-center">
-              <div className="center-circle">
-                <span className="center-icon">🌍</span>
+          <div className="gear-container">
+            <div className="gear-left">
+              <svg className="gear-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <style>{`
+                    .gear-rotate { animation: rotate 40s linear infinite; }
+                    @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+                  `}</style>
+                </defs>
+                <g className="gear-rotate" style={{transformOrigin: '200px 200px'}}>
+                  <circle cx="200" cy="200" r="180" fill="none" stroke="#EE1D52" strokeWidth="2" opacity="0.3"/>
+                  {rotaryFocuses.map((_, index) => {
+                    const angle = (index * 360) / rotaryFocuses.length;
+                    const radius = 140;
+                    const x = 200 + radius * Math.cos((angle - 90) * Math.PI / 180);
+                    const y = 200 + radius * Math.sin((angle - 90) * Math.PI / 180);
+                    return (
+                      <g key={index}>
+                        <circle cx={x} cy={y} r="35" fill={currentFocus === index ? '#EE1D52' : '#FFF'} stroke="#EE1D52" strokeWidth="3"/>
+                        <text x={x} y={y} textAnchor="middle" dy="0.3em" fontSize="24" fontWeight="bold" fill={currentFocus === index ? '#FFF' : '#EE1D52'}>
+                          {rotaryFocuses[index].icon}
+                        </text>
+                      </g>
+                    );
+                  })}
+                  <circle cx="200" cy="200" r="50" fill="var(--primary-dark-red)"/>
+                  <text x="200" y="210" textAnchor="middle" fontSize="28" fontWeight="bold" fill="#FFF">⚙️</text>
+                </g>
+              </svg>
+            </div>
+
+            <div className="gear-right">
+              <div className="focus-info-panel">
+                <div className="info-header">
+                  <span className="info-icon">{rotaryFocuses[currentFocus].icon}</span>
+                  <h3 className="info-title">{rotaryFocuses[currentFocus].title}</h3>
+                </div>
+                <p className="info-description">{rotaryFocuses[currentFocus].description}</p>
+                <div className="info-indicator">
+                  <p className="indicator-label">Área {currentFocus + 1} de {rotaryFocuses.length}</p>
+                  <div className="progress-dots">
+                    {rotaryFocuses.map((_, index) => (
+                      <button
+                        key={index}
+                        className={`dot ${currentFocus === index ? 'active' : ''}`}
+                        onClick={() => setCurrentFocus(index)}
+                        aria-label={`Focus ${index + 1}`}
+                      ></button>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
-            {rotaryFocuses.map((focus, index) => (
-              <div
-                key={index}
-                className={`focus-point focus-point-${index}`}
-                onClick={() => setExpandedFocus(expandedFocus === index ? null : index)}
-                role="button"
-                tabIndex={0}
-                onKeyPress={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    setExpandedFocus(expandedFocus === index ? null : index);
-                  }
-                }}
-              >
-                <div className="focus-point-circle">
-                  <span className="focus-point-icon">{focus.icon}</span>
-                </div>
-                <div className={`focus-point-content ${expandedFocus === index ? 'active' : ''}`}>
-                  <h3>{focus.title}</h3>
-                  <p>{focus.description}</p>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
