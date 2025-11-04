@@ -998,8 +998,26 @@ body {
     gap: var(--spacing-lg);
   }
 
+  .gear-left {
+    height: 380px;
+  }
+
+  .gear-background {
+    width: 360px;
+    height: 360px;
+  }
+
   .focus-info-panel {
-    min-height: 350px;
+    min-height: 380px;
+    max-width: 100%;
+  }
+
+  .impact-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .impact-card {
+    min-height: 300px;
   }
 }
 
@@ -1027,21 +1045,22 @@ body {
   }
 
   .gear-left {
-    max-height: 300px;
+    height: 300px;
   }
 
-  .gear-svg {
-    max-width: 300px;
+  .gear-background {
+    width: 280px;
+    height: 280px;
   }
 
   .focus-info-panel {
-    min-height: 350px;
-    padding: var(--spacing-md);
+    min-height: 360px;
+    padding: var(--spacing-lg);
     max-width: 100%;
   }
 
   .info-header {
-    gap: 0.75rem;
+    gap: 1rem;
   }
 
   .info-icon {
@@ -1049,11 +1068,29 @@ body {
   }
 
   .info-title {
-    font-size: 1.25rem;
+    font-size: 1.3rem;
   }
 
   .info-description {
     font-size: 1rem;
+    margin: 1rem 0;
+  }
+
+  .impact-card {
+    min-height: 280px;
+    padding: var(--spacing-md);
+  }
+
+  .impact-card-icon {
+    font-size: 2.8rem;
+  }
+
+  .impact-card-number {
+    font-size: 2.5rem;
+  }
+
+  .impact-card-title {
+    font-size: 1.3rem;
   }
 
   .mission-vision-container {
