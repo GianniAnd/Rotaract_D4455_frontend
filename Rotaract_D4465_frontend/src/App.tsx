@@ -6,12 +6,6 @@ const App = () => {
   const [currentFocus, setCurrentFocus] = useState(0);
   const [isHoveringGear, setIsHoveringGear] = useState(false);
 
-  const dashboardData = {
-    members: { count: '1,200+', label: 'Miembros Activos', icon: '👥' },
-    clubs: { count: '45+', label: 'Clubes', icon: '🏛️' },
-    projects: { count: '150+', label: 'Proyectos Anuales', icon: '🎯' }
-  };
-
   const rotaryFocuses = [
     {
       title: 'Paz y Prevención/Resolución de Conflictos',
