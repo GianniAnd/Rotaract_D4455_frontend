@@ -130,19 +130,19 @@ const App = () => {
         </div>
         <h3 className="about-main-title">Jóvenes líderes al servicio de la comunidad</h3>
         <p className="about-description">
-          Rotaract es una organización mundial de jóvenes adultos patrocinada por Rotary International. 
-          En el Distrito 4465, que comprende Perú, somos más de 1,200 jóvenes comprometidos con 
+          Rotaract es una organización mundial de jóvenes adultos patrocinada por Rotary International.
+          En el Distrito 4465, que comprende Perú, somos más de 1,200 jóvenes comprometidos con
           el servicio comunitario, el desarrollo profesional y el liderazgo.
         </p>
-        <img 
-          src="https://api.builder.io/api/v1/image/assets/TEMP/0dba76569d00dacf6aed0b2600488f02da40e002?width=2872" 
-          alt="Rotaract Activities" 
-          className="about-image"
-        />
       </section>
 
       {/* Interactive Dashboard */}
       <section className="dashboard-section">
+        <img
+          src="https://api.builder.io/api/v1/image/assets/TEMP/0dba76569d00dacf6aed0b2600488f02da40e002?width=2872"
+          alt="Rotaract Activities"
+          className="dashboard-background"
+        />
         <h2 className="section-title-dark">Nuestro Impacto</h2>
         <div className="dashboard">
           <div className="dashboard-tabs">
