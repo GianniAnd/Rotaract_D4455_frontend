@@ -299,7 +299,11 @@ body {
 .dashboard-section {
   position: relative;
   padding: var(--spacing-xl) var(--spacing-md);
-  min-height: 900px;
+  min-height: 1100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .dashboard-background {
