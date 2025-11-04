@@ -937,6 +937,48 @@ body {
   .footer-contact {
     align-items: flex-start;
   }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .gallery-item {
+    height: 200px;
+  }
+
+  .gallery-item-large {
+    grid-column: span 1;
+    height: 200px;
+  }
+
+  .circular-focuses {
+    min-height: 550px;
+  }
+
+  .focus-point {
+    width: 90px;
+    height: 90px;
+  }
+
+  .focus-point-icon {
+    font-size: 1.8rem;
+  }
+
+  .center-circle {
+    width: 120px;
+    height: 120px;
+  }
+
+  .center-icon {
+    font-size: 3rem;
+  }
+
+  .focus-point-content {
+    width: 240px;
+    bottom: -150px;
+    padding: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
