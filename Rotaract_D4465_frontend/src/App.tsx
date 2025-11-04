@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 const App = () => {
-  const [activeTab, setActiveTab] = useState<'members' | 'clubs' | 'projects'>('members');
   const [navbarScrolled, setNavbarScrolled] = useState(false);
-  const [expandedFocus, setExpandedFocus] = useState<number | null>(null);
   const [currentFocus, setCurrentFocus] = useState(0);
+  const [isHoveringGear, setIsHoveringGear] = useState(false);
 
   const dashboardData = {
     members: { count: '1,200+', label: 'Miembros Activos', icon: '👥' },
@@ -61,12 +60,14 @@ const App = () => {
   }, []);
 
   useEffect(() => {
+    if (isHoveringGear) return;
+
     const interval = setInterval(() => {
       setCurrentFocus((prev) => (prev + 1) % rotaryFocuses.length);
-    }, 10000);
+    }, 6000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isHoveringGear]);
 
   return (
     <div className="app">
@@ -122,7 +123,7 @@ const App = () => {
         </p>
       </section>
 
-      {/* Interactive Dashboard */}
+      {/* Impact Cards Section */}
       <section className="dashboard-section">
         <img
           src="https://api.builder.io/api/v1/image/assets/TEMP/0dba76569d00dacf6aed0b2600488f02da40e002?width=2872"
@@ -130,48 +131,31 @@ const App = () => {
           className="dashboard-background"
         />
         <h2 className="section-title-dark">Nuestro Impacto en Números</h2>
-        <div className="dashboard">
-          <div className="dashboard-tabs">
-            {Object.entries(dashboardData).map(([key, data]) => (
-              <button
-                key={key}
-                className={`dashboard-tab ${activeTab === key ? 'active' : ''}`}
-                onClick={() => setActiveTab(key as typeof activeTab)}
-              >
-                <span className="tab-icon">{data.icon}</span>
-                <span className="tab-label">{data.label}</span>
-              </button>
-            ))}
-          </div>
-          <div className="dashboard-content">
-            <div className="dashboard-stat">
-              <span className="stat-number animated-number">{dashboardData[activeTab].count}</span>
-              <span className="stat-label">{dashboardData[activeTab].label}</span>
+        <div className="impact-cards-grid">
+          <div className="impact-card">
+            <div className="impact-card-icon">👥</div>
+            <div className="impact-card-content">
+              <h3 className="impact-card-title">Miembros Activos</h3>
+              <p className="impact-card-number">1,200+</p>
+              <p className="impact-card-description">Jóvenes rotaractianos comprometidos con el cambio positivo en todo Perú, representando diversas profesiones y sectores.</p>
             </div>
-            <p className="dashboard-description">
-              {activeTab === 'members' && 'Más de 1,200 jóvenes rotaractianos activos en todo Perú, comprometidos con el cambio positivo. Nuestros miembros representan diversas profesiones y sectores de la sociedad.'}
-              {activeTab === 'clubs' && '45 clubes distribuidos estratégicamente en todo el Distrito 4465, creando redes de servicio. Cada club es un motor de cambio en su comunidad local.'}
-              {activeTab === 'projects' && 'Ejecutamos más de 150 proyectos cada año enfocados en las áreas de enfoque de Rotary. Juntos, transformamos realidades y generamos impacto duradero.'}
-            </p>
-            <div className="dashboard-metrics">
-              {activeTab === 'members' && (
-                <div className="metric-bar">
-                  <div className="metric-label">Engagement</div>
-                  <div className="metric-progress"><div className="metric-fill" style={{width: '92%'}}></div></div>
-                </div>
-              )}
-              {activeTab === 'clubs' && (
-                <div className="metric-bar">
-                  <div className="metric-label">Cobertura Nacional</div>
-                  <div className="metric-progress"><div className="metric-fill" style={{width: '85%'}}></div></div>
-                </div>
-              )}
-              {activeTab === 'projects' && (
-                <div className="metric-bar">
-                  <div className="metric-label">Éxito de Proyectos</div>
-                  <div className="metric-progress"><div className="metric-fill" style={{width: '96%'}}></div></div>
-                </div>
-              )}
+          </div>
+
+          <div className="impact-card">
+            <div className="impact-card-icon">🏛️</div>
+            <div className="impact-card-content">
+              <h3 className="impact-card-title">Clubes</h3>
+              <p className="impact-card-number">45+</p>
+              <p className="impact-card-description">Clubes distribuidos estratégicamente en el Distrito 4465, creando redes de servicio y generando cambio comunitario.</p>
+            </div>
+          </div>
+
+          <div className="impact-card">
+            <div className="impact-card-icon">🎯</div>
+            <div className="impact-card-content">
+              <h3 className="impact-card-title">Proyectos Anuales</h3>
+              <p className="impact-card-number">150+</p>
+              <p className="impact-card-description">Ejecutamos proyectos enfocados en las áreas de enfoque de Rotary, transformando realidades y generando impacto duradero.</p>
             </div>
           </div>
         </div>
@@ -227,46 +211,73 @@ const App = () => {
           Nuestros proyectos se alinean con las áreas prioritarias de Rotary International para crear un cambio sostenible.
         </p>
         <div className="focuses-container">
-          <div className="gear-container">
+          <div className="gear-container" onMouseEnter={() => setIsHoveringGear(true)} onMouseLeave={() => setIsHoveringGear(false)}>
             <div className="gear-left">
-              <svg className="gear-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <style>{`
-                    .gear-rotate { animation: rotate 40s linear infinite; }
-                    @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-                  `}</style>
-                </defs>
-                <g className="gear-rotate" style={{transformOrigin: '200px 200px'}}>
-                  <circle cx="200" cy="200" r="180" fill="none" stroke="#EE1D52" strokeWidth="2" opacity="0.3"/>
+              <div className="gear-background"></div>
+              <div className="gear-wrapper">
+                <svg className={`gear-svg ${isHoveringGear ? 'paused' : ''}`} style={{
+                  transform: `rotate(${(currentFocus * 360) / rotaryFocuses.length}deg)`
+                }} viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <style>{`
+                      .gear-rotate { animation: ${isHoveringGear ? 'none' : 'rotate 60s linear infinite'}; }
+                      @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+                    `}</style>
+                  </defs>
+                  <circle cx="200" cy="200" r="180" fill="none" stroke="#C41E3A" strokeWidth="1" opacity="0.2"/>
+                  <circle cx="200" cy="200" r="160" fill="none" stroke="#C41E3A" strokeWidth="1" opacity="0.15"/>
+
                   {rotaryFocuses.map((_, index) => {
                     const angle = (index * 360) / rotaryFocuses.length;
-                    const radius = 140;
+                    const radius = 135;
                     const x = 200 + radius * Math.cos((angle - 90) * Math.PI / 180);
                     const y = 200 + radius * Math.sin((angle - 90) * Math.PI / 180);
+                    const isActive = currentFocus === index;
                     return (
                       <g key={index}>
-                        <circle cx={x} cy={y} r="35" fill={currentFocus === index ? '#EE1D52' : '#FFF'} stroke="#EE1D52" strokeWidth="3"/>
-                        <text x={x} y={y} textAnchor="middle" dy="0.3em" fontSize="24" fontWeight="bold" fill={currentFocus === index ? '#FFF' : '#EE1D52'}>
+                        <circle
+                          cx={x} cy={y} r="40"
+                          fill={isActive ? '#C41E3A' : '#FFF'}
+                          stroke="#C41E3A"
+                          strokeWidth="3"
+                          opacity={isActive ? 1 : 0.9}
+                          style={{transition: 'all 0.6s ease'}}
+                        />
+                        <text
+                          x={x} y={y}
+                          textAnchor="middle"
+                          dy="0.3em"
+                          fontSize="28"
+                          fontWeight="bold"
+                          fill={isActive ? '#FFF' : '#C41E3A'}
+                          style={{transition: 'fill 0.6s ease'}}
+                        >
                           {rotaryFocuses[index].icon}
                         </text>
                       </g>
                     );
                   })}
-                  <circle cx="200" cy="200" r="50" fill="var(--primary-dark-red)"/>
-                  <text x="200" y="210" textAnchor="middle" fontSize="28" fontWeight="bold" fill="#FFF">⚙️</text>
-                </g>
-              </svg>
+
+                  <circle cx="200" cy="200" r="60" fill="#C41E3A" opacity="0.95"/>
+                  <circle cx="200" cy="200" r="50" fill="#fff" opacity="0.1"/>
+                  <text x="200" y="215" textAnchor="middle" fontSize="32" fontWeight="bold" fill="#FFF">⚙️</text>
+                </svg>
+              </div>
             </div>
 
             <div className="gear-right">
               <div className="focus-info-panel">
                 <div className="info-header">
                   <span className="info-icon">{rotaryFocuses[currentFocus].icon}</span>
-                  <h3 className="info-title">{rotaryFocuses[currentFocus].title}</h3>
+                  <div className="info-text">
+                    <h3 className="info-title">{rotaryFocuses[currentFocus].title}</h3>
+                    <span className="area-badge">Área {currentFocus + 1} de {rotaryFocuses.length}</span>
+                  </div>
                 </div>
+
                 <p className="info-description">{rotaryFocuses[currentFocus].description}</p>
-                <div className="info-indicator">
-                  <p className="indicator-label">Área {currentFocus + 1} de {rotaryFocuses.length}</p>
+
+                <div className="info-footer">
                   <div className="progress-dots">
                     {rotaryFocuses.map((_, index) => (
                       <button
@@ -277,6 +288,7 @@ const App = () => {
                       ></button>
                     ))}
                   </div>
+                  <p className="auto-rotate-label">Rotación automática cada 6 segundos</p>
                 </div>
               </div>
             </div>
