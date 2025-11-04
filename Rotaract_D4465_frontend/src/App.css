@@ -299,12 +299,12 @@ body {
 .dashboard-section {
   position: relative;
   padding: var(--spacing-xl) var(--spacing-md);
-  min-height: 800px;
-  overflow: hidden;
+  min-height: 900px;
+  background: transparent;
 }
 
 .dashboard-background {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -312,6 +312,7 @@ body {
   object-fit: cover;
   z-index: 0;
   pointer-events: none;
+  background-attachment: fixed;
 }
 
 .dashboard {
