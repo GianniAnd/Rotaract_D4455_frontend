@@ -980,32 +980,13 @@ body {
     height: 200px;
   }
 
-  .circular-focuses {
-    min-height: 550px;
+  .gear-container {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
   }
 
-  .focus-point {
-    width: 90px;
-    height: 90px;
-  }
-
-  .focus-point-icon {
-    font-size: 1.8rem;
-  }
-
-  .center-circle {
-    width: 120px;
-    height: 120px;
-  }
-
-  .center-icon {
-    font-size: 3rem;
-  }
-
-  .focus-point-content {
-    width: 240px;
-    bottom: -150px;
-    padding: 1rem;
+  .focus-info-panel {
+    min-height: 350px;
   }
 }
 
@@ -1027,36 +1008,39 @@ body {
     height: 250px;
   }
 
-  .circular-focuses {
-    min-height: 600px;
-    padding: 2rem 0;
+  .gear-container {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
   }
 
-  .focus-point {
-    width: 80px;
-    height: 80px;
+  .gear-left {
+    max-height: 300px;
   }
 
-  .focus-point-circle {
-    border-width: 2px;
+  .gear-svg {
+    max-width: 300px;
   }
 
-  .focus-point-icon {
-    font-size: 1.5rem;
+  .focus-info-panel {
+    min-height: 350px;
+    padding: var(--spacing-md);
+    max-width: 100%;
   }
 
-  .center-circle {
-    width: 110px;
-    height: 110px;
+  .info-header {
+    gap: 0.75rem;
   }
 
-  .center-icon {
-    font-size: 3rem;
+  .info-icon {
+    font-size: 2.5rem;
   }
 
-  .focus-point-content {
-    width: 220px;
-    font-size: 0.85rem;
+  .info-title {
+    font-size: 1.25rem;
+  }
+
+  .info-description {
+    font-size: 1rem;
   }
 
   .mission-vision-container {
