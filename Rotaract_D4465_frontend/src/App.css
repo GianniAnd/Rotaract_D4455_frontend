@@ -850,13 +850,27 @@ body {
     font-size: 14px;
   }
 
-  .values-grid {
+  .gallery-grid {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    gap: 1.5rem;
   }
 
-  .focuses-grid {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  .gallery-item-large {
+    grid-column: span 1;
+    height: 300px;
+  }
+
+  .circular-focuses {
+    min-height: 500px;
+  }
+
+  .focus-point {
+    width: 100px;
+    height: 100px;
+  }
+
+  .focus-point-icon {
+    font-size: 2rem;
   }
 }
 
@@ -921,26 +935,57 @@ body {
 
 @media (max-width: 480px) {
   .about-section,
-  .values-section,
+  .gallery-section,
   .focuses-section,
   .mission-vision-section,
   .dashboard-section {
     padding: var(--spacing-md) var(--spacing-sm);
   }
 
-  .values-grid,
-  .focuses-grid {
+  .gallery-grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1rem;
+  }
+
+  .gallery-item {
+    height: 250px;
+  }
+
+  .circular-focuses {
+    min-height: 600px;
+    padding: 2rem 0;
+  }
+
+  .focus-point {
+    width: 80px;
+    height: 80px;
+  }
+
+  .focus-point-circle {
+    border-width: 2px;
+  }
+
+  .focus-point-icon {
+    font-size: 1.5rem;
+  }
+
+  .center-circle {
+    width: 110px;
+    height: 110px;
+  }
+
+  .center-icon {
+    font-size: 3rem;
+  }
+
+  .focus-point-content {
+    width: 220px;
+    font-size: 0.85rem;
   }
 
   .mission-vision-container {
     grid-template-columns: 1fr;
     gap: 2rem;
-  }
-
-  .value-card-wrapper {
-    height: 350px;
   }
 
   .footer-wrapper {
