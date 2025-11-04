@@ -171,42 +171,66 @@ const App = () => {
         </div>
       </section>
 
-      {/* Values Section */}
-      <section className="values-section">
-        <h2 className="section-title-dark">Nuestros Valores</h2>
-        <div className="values-container">
-          <div className="values-grid">
-            {values.map((value, index) => (
-              <div key={index} className="value-card-wrapper">
-                <div className="value-card">
-                  <div className="value-card-inner">
-                    <div className="value-icon-container">
-                      <span className="value-icon">{value.icon}</span>
-                    </div>
-                    <h3 className="value-title">{value.title}</h3>
-                  </div>
-                  <div className="value-back">
-                    <p className="value-description">{value.description}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
+      {/* Our Impact Gallery Section */}
+      <section className="gallery-section">
+        <h2 className="section-title-dark">Galería de Impacto</h2>
+        <p className="gallery-intro">Conoce nuestros proyectos y la transformación que generamos en las comunidades</p>
+        <div className="gallery-grid">
+          <div className="gallery-item gallery-item-large">
+            <img src="https://api.builder.io/api/v1/image/assets/TEMP/0dba76569d00dacf6aed0b2600488f02da40e002?width=2872" alt="Proyecto Comunitario" />
+            <div className="gallery-overlay">
+              <h3>Proyectos Comunitarios</h3>
+              <p>Iniciativas de impacto social</p>
+            </div>
+          </div>
+          <div className="gallery-item">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop" alt="Voluntariado" />
+            <div className="gallery-overlay">
+              <h3>Voluntariado</h3>
+              <p>Manos que transforman</p>
+            </div>
+          </div>
+          <div className="gallery-item">
+            <img src="https://images.unsplash.com/photo-1559027615-cd2628902d4a?w=600&h=400&fit=crop" alt="Educación" />
+            <div className="gallery-overlay">
+              <h3>Educación</h3>
+              <p>Formando líderes</p>
+            </div>
+          </div>
+          <div className="gallery-item">
+            <img src="https://images.unsplash.com/photo-1517457373614-b7152f800fd1?w=600&h=400&fit=crop" alt="Desarrollo" />
+            <div className="gallery-overlay">
+              <h3>Desarrollo</h3>
+              <p>Crecimiento sostenible</p>
+            </div>
+          </div>
+          <div className="gallery-item">
+            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=400&fit=crop" alt="Comunidad" />
+            <div className="gallery-overlay">
+              <h3>Comunidad</h3>
+              <p>Unidos por un cambio</p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 7 Rotary Focuses */}
+      {/* 7 Rotary Focuses - Circular Design */}
       <section className="focuses-section" id="proyectos">
         <h2 className="section-title-dark">Las 7 Áreas de Enfoque de Rotary</h2>
         <p className="focuses-intro">
           Nuestros proyectos se alinean con las áreas prioritarias de Rotary International para crear un cambio sostenible.
         </p>
         <div className="focuses-container">
-          <div className="focuses-grid">
+          <div className="circular-focuses">
+            <div className="focus-center">
+              <div className="center-circle">
+                <span className="center-icon">🌍</span>
+              </div>
+            </div>
             {rotaryFocuses.map((focus, index) => (
               <div
                 key={index}
-                className={`focus-card ${expandedFocus === index ? 'expanded' : ''}`}
+                className={`focus-point focus-point-${index}`}
                 onClick={() => setExpandedFocus(expandedFocus === index ? null : index)}
                 role="button"
                 tabIndex={0}
@@ -216,10 +240,12 @@ const App = () => {
                   }
                 }}
               >
-                <div className="focus-card-content">
-                  <div className="focus-icon-large">{focus.icon}</div>
-                  <h3 className="focus-title">{focus.title}</h3>
-                  <p className="focus-description">{focus.description}</p>
+                <div className="focus-point-circle">
+                  <span className="focus-point-icon">{focus.icon}</span>
+                </div>
+                <div className={`focus-point-content ${expandedFocus === index ? 'active' : ''}`}>
+                  <h3>{focus.title}</h3>
+                  <p>{focus.description}</p>
                 </div>
               </div>
             ))}
