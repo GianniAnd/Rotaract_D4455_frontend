@@ -120,7 +120,7 @@ const App = () => {
           alt="Rotaract Activities"
           className="dashboard-background"
         />
-        <h2 className="section-title-dark">Nuestro Impacto</h2>
+        <h2 className="section-title-dark">Nuestro Impacto en Números</h2>
         <div className="dashboard">
           <div className="dashboard-tabs">
             {Object.entries(dashboardData).map(([key, data]) => (
@@ -136,14 +136,34 @@ const App = () => {
           </div>
           <div className="dashboard-content">
             <div className="dashboard-stat">
-              <span className="stat-number">{dashboardData[activeTab].count}</span>
+              <span className="stat-number animated-number">{dashboardData[activeTab].count}</span>
               <span className="stat-label">{dashboardData[activeTab].label}</span>
             </div>
             <p className="dashboard-description">
-              {activeTab === 'members' && 'Más de 1,200 jóvenes rotaractianos activos en todo Perú, comprometidos con el cambio positivo.'}
-              {activeTab === 'clubs' && '45 clubes distribuidos estratégicamente en todo el Distrito 4465, creando redes de servicio.'}
-              {activeTab === 'projects' && 'Ejecutamos más de 150 proyectos cada año enfocados en las áreas de enfoque de Rotary.'}
+              {activeTab === 'members' && 'Más de 1,200 jóvenes rotaractianos activos en todo Perú, comprometidos con el cambio positivo. Nuestros miembros representan diversas profesiones y sectores de la sociedad.'}
+              {activeTab === 'clubs' && '45 clubes distribuidos estratégicamente en todo el Distrito 4465, creando redes de servicio. Cada club es un motor de cambio en su comunidad local.'}
+              {activeTab === 'projects' && 'Ejecutamos más de 150 proyectos cada año enfocados en las áreas de enfoque de Rotary. Juntos, transformamos realidades y generamos impacto duradero.'}
             </p>
+            <div className="dashboard-metrics">
+              {activeTab === 'members' && (
+                <div className="metric-bar">
+                  <div className="metric-label">Engagement</div>
+                  <div className="metric-progress"><div className="metric-fill" style={{width: '92%'}}></div></div>
+                </div>
+              )}
+              {activeTab === 'clubs' && (
+                <div className="metric-bar">
+                  <div className="metric-label">Cobertura Nacional</div>
+                  <div className="metric-progress"><div className="metric-fill" style={{width: '85%'}}></div></div>
+                </div>
+              )}
+              {activeTab === 'projects' && (
+                <div className="metric-bar">
+                  <div className="metric-label">Éxito de Proyectos</div>
+                  <div className="metric-progress"><div className="metric-fill" style={{width: '96%'}}></div></div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </section>
@@ -154,35 +174,35 @@ const App = () => {
         <p className="gallery-intro">Conoce nuestros proyectos y la transformación que generamos en las comunidades</p>
         <div className="gallery-grid">
           <div className="gallery-item gallery-item-large">
-            <img src="https://api.builder.io/api/v1/image/assets/TEMP/0dba76569d00dacf6aed0b2600488f02da40e002?width=2872" alt="Proyecto Comunitario" />
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop" alt="Proyecto Comunitario" />
             <div className="gallery-overlay">
               <h3>Proyectos Comunitarios</h3>
               <p>Iniciativas de impacto social</p>
             </div>
           </div>
           <div className="gallery-item">
-            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop" alt="Voluntariado" />
+            <img src="https://images.unsplash.com/photo-1559027615-cd2628902d4a?w=600&h=400&fit=crop" alt="Voluntariado" />
             <div className="gallery-overlay">
               <h3>Voluntariado</h3>
               <p>Manos que transforman</p>
             </div>
           </div>
           <div className="gallery-item">
-            <img src="https://images.unsplash.com/photo-1559027615-cd2628902d4a?w=600&h=400&fit=crop" alt="Educación" />
+            <img src="https://images.unsplash.com/photo-1517457373614-b7152f800fd1?w=600&h=400&fit=crop" alt="Educación" />
             <div className="gallery-overlay">
               <h3>Educación</h3>
               <p>Formando líderes</p>
             </div>
           </div>
           <div className="gallery-item">
-            <img src="https://images.unsplash.com/photo-1517457373614-b7152f800fd1?w=600&h=400&fit=crop" alt="Desarrollo" />
+            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=400&fit=crop" alt="Sostenibilidad" />
             <div className="gallery-overlay">
-              <h3>Desarrollo</h3>
-              <p>Crecimiento sostenible</p>
+              <h3>Sostenibilidad</h3>
+              <p>Cuidando nuestro planeta</p>
             </div>
           </div>
           <div className="gallery-item">
-            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=400&fit=crop" alt="Comunidad" />
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop" alt="Comunidad" />
             <div className="gallery-overlay">
               <h3>Comunidad</h3>
               <p>Unidos por un cambio</p>
