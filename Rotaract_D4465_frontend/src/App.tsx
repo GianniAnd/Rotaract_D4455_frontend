@@ -50,29 +50,6 @@ const App = () => {
     }
   ];
 
-  const values = [
-    {
-      title: 'Servicio',
-      icon: '🤝',
-      description: 'Dedicamos nuestro tiempo y esfuerzo para crear un impacto positivo en nuestras comunidades.'
-    },
-    {
-      title: 'Liderazgo',
-      icon: '🎯',
-      description: 'Desarrollamos habilidades que nos permiten liderar con el ejemplo y motivar el cambio.'
-    },
-    {
-      title: 'Compañerismo',
-      icon: '👫',
-      description: 'Construimos relaciones duraderas basadas en respeto mutuo y apoyo comunitario.'
-    },
-    {
-      title: 'Diversidad',
-      icon: '🌍',
-      description: 'Celebramos nuestras diferencias creando un ambiente inclusivo para todos.'
-    }
-  ];
-
   useEffect(() => {
     const handleScroll = () => {
       setNavbarScrolled(window.scrollY > 800);
