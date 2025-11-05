@@ -29,7 +29,7 @@ const App = () => {
     },
     {
       title: 'Educación Básica y Alfabetización',
-      icon: '📚',
+      icon: '����',
       description: 'Fomentamos la educación de calidad para todos.'
     },
     {
@@ -209,53 +209,47 @@ const App = () => {
             <div className="gear-left">
               <div className="gear-background"></div>
               <div className="gear-wrapper">
-                <svg className={`gear-svg ${isHoveringGear ? 'paused' : ''}`} style={{
+                <div className={`gear-image-container ${isHoveringGear ? 'paused' : ''}`} style={{
                   transform: `rotate(${(currentFocus * 360) / rotaryFocuses.length}deg)`
-                }} viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                  <defs>
-                    <style>{`
-                      .gear-rotate { animation: ${isHoveringGear ? 'none' : 'rotate 60s linear infinite'}; }
-                      @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-                    `}</style>
-                  </defs>
-                  <circle cx="200" cy="200" r="180" fill="none" stroke="#C41E3A" strokeWidth="1" opacity="0.2"/>
-                  <circle cx="200" cy="200" r="160" fill="none" stroke="#C41E3A" strokeWidth="1" opacity="0.15"/>
+                }}>
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets%2F280c32c99f674779bfdb99f79dc5f99a%2F558da4db16c54c39b0e4082f1eff6b36?format=webp&width=800"
+                    alt="Rotary Gear"
+                    className="gear-image"
+                  />
+                  <svg className="gear-circles" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="200" cy="200" r="180" fill="none" stroke="#C41E3A" strokeWidth="1" opacity="0.2"/>
+                    <circle cx="200" cy="200" r="160" fill="none" stroke="#C41E3A" strokeWidth="1" opacity="0.15"/>
 
-                  {rotaryFocuses.map((_, index) => {
-                    const angle = (index * 360) / rotaryFocuses.length;
-                    const radius = 135;
-                    const x = 200 + radius * Math.cos((angle - 90) * Math.PI / 180);
-                    const y = 200 + radius * Math.sin((angle - 90) * Math.PI / 180);
-                    const isActive = currentFocus === index;
-                    return (
-                      <g key={index}>
-                        <circle
-                          cx={x} cy={y} r="40"
-                          fill={isActive ? '#C41E3A' : '#FFF'}
-                          stroke="#C41E3A"
-                          strokeWidth="3"
-                          opacity={isActive ? 1 : 0.9}
-                          style={{transition: 'all 0.6s ease'}}
-                        />
-                        <text
-                          x={x} y={y}
-                          textAnchor="middle"
-                          dy="0.3em"
-                          fontSize="28"
-                          fontWeight="bold"
-                          fill={isActive ? '#FFF' : '#C41E3A'}
-                          style={{transition: 'fill 0.6s ease'}}
-                        >
-                          {rotaryFocuses[index].icon}
-                        </text>
-                      </g>
-                    );
-                  })}
-
-                  <circle cx="200" cy="200" r="60" fill="#C41E3A" opacity="0.95"/>
-                  <circle cx="200" cy="200" r="50" fill="#fff" opacity="0.1"/>
-                  <text x="200" y="215" textAnchor="middle" fontSize="32" fontWeight="bold" fill="#FFF">⚙️</text>
-                </svg>
+                    {rotaryFocuses.map((_, index) => {
+                      const angle = (index * 360) / rotaryFocuses.length;
+                      const radius = 135;
+                      const x = 200 + radius * Math.cos((angle - 90) * Math.PI / 180);
+                      const y = 200 + radius * Math.sin((angle - 90) * Math.PI / 180);
+                      const isActive = currentFocus === index;
+                      return (
+                        <g key={index}>
+                          <circle
+                            cx={x} cy={y} r="40"
+                            fill={isActive ? '#C41E3A' : '#FFF'}
+                            stroke="#C41E3A"
+                            strokeWidth="3"
+                            opacity={isActive ? 1 : 0.9}
+                            style={{transition: 'all 0.6s ease'}}
+                          />
+                          <image
+                            x={x - 14}
+                            y={y - 14}
+                            width="28"
+                            height="28"
+                            href={rotaryFocuses[index].icon}
+                            style={{transition: 'opacity 0.6s ease'}}
+                          />
+                        </g>
+                      );
+                    })}
+                  </svg>
+                </div>
               </div>
             </div>
 
