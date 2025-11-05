@@ -9,37 +9,37 @@ const App = () => {
   const rotaryFocuses = [
     {
       title: 'Paz y Prevención/Resolución de Conflictos',
-      icon: '🕊️',
+      icon: 'https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?w=56&h=56&fit=crop',
       description: 'Promovemos la paz y el entendimiento entre comunidades.'
     },
     {
       title: 'Prevención y Tratamiento de Enfermedades',
-      icon: '⚕️',
+      icon: 'https://images.unsplash.com/photo-1576091160550-112173faf246?w=56&h=56&fit=crop',
       description: 'Apoyamos la salud y el bienestar de las comunidades.'
     },
     {
       title: 'Agua y Saneamiento',
-      icon: '💧',
+      icon: 'https://images.unsplash.com/photo-1580274455191-1c62238fa333?w=56&h=56&fit=crop',
       description: 'Garantizamos el acceso a agua potable y saneamiento básico.'
     },
     {
       title: 'Salud Materno Infantil',
-      icon: '👶',
+      icon: 'https://images.unsplash.com/photo-1576091160550-112173faf246?w=56&h=56&fit=crop',
       description: 'Protegemos la salud de madres e hijos.'
     },
     {
       title: 'Educación Básica y Alfabetización',
-      icon: '����',
+      icon: 'https://images.unsplash.com/photo-1427504494785-cdabad0c0c51?w=56&h=56&fit=crop',
       description: 'Fomentamos la educación de calidad para todos.'
     },
     {
       title: 'Desarrollo Económico Comunitario',
-      icon: '💼',
+      icon: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=56&h=56&fit=crop',
       description: 'Impulsamos el crecimiento económico sostenible.'
     },
     {
       title: 'Medio Ambiente',
-      icon: '🌱',
+      icon: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=56&h=56&fit=crop',
       description: 'Protegemos nuestro planeta para las futuras generaciones.'
     }
   ];
@@ -127,7 +127,9 @@ const App = () => {
         <h2 className="section-title-dark">Nuestro Impacto en Números</h2>
         <div className="impact-cards-grid">
           <div className="impact-card">
-            <div className="impact-card-icon">👥</div>
+            <div className="impact-card-icon-wrapper">
+              <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=80&h=80&fit=crop" alt="Miembros" className="impact-card-icon" />
+            </div>
             <div className="impact-card-content">
               <h3 className="impact-card-title">Miembros Activos</h3>
               <p className="impact-card-number">1,200+</p>
@@ -136,7 +138,9 @@ const App = () => {
           </div>
 
           <div className="impact-card">
-            <div className="impact-card-icon">🏛️</div>
+            <div className="impact-card-icon-wrapper">
+              <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=80&h=80&fit=crop" alt="Clubes" className="impact-card-icon" />
+            </div>
             <div className="impact-card-content">
               <h3 className="impact-card-title">Clubes</h3>
               <p className="impact-card-number">45+</p>
@@ -145,7 +149,9 @@ const App = () => {
           </div>
 
           <div className="impact-card">
-            <div className="impact-card-icon">🎯</div>
+            <div className="impact-card-icon-wrapper">
+              <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=80&h=80&fit=crop" alt="Proyectos" className="impact-card-icon" />
+            </div>
             <div className="impact-card-content">
               <h3 className="impact-card-title">Proyectos Anuales</h3>
               <p className="impact-card-number">150+</p>
@@ -256,7 +262,7 @@ const App = () => {
             <div className="gear-right">
               <div className="focus-info-panel">
                 <div className="info-header">
-                  <span className="info-icon">{rotaryFocuses[currentFocus].icon}</span>
+                  <img src={rotaryFocuses[currentFocus].icon} alt={rotaryFocuses[currentFocus].title} className="info-icon" />
                   <div className="info-text">
                     <h3 className="info-title">{rotaryFocuses[currentFocus].title}</h3>
                     <span className="area-badge">Área {currentFocus + 1} de {rotaryFocuses.length}</span>
