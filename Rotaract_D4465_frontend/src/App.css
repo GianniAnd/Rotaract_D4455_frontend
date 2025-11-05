@@ -350,21 +350,11 @@ body {
   border-color: #C41E3A;
 }
 
-.impact-card-icon-wrapper {
-  width: 100px;
-  height: 100px;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: bounce 2s ease-in-out infinite;
-}
-
 .impact-card-icon {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border-radius: var(--border-radius-md);
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  display: block;
+  animation: bounce 2s ease-in-out infinite;
 }
 
 .impact-card-content {
@@ -526,16 +516,16 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 450px;
+  height: 550px;
 }
 
 .gear-background {
   position: absolute;
-  width: 420px;
-  height: 420px;
+  width: 520px;
+  height: 520px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(196, 30, 58, 0.08) 0%, rgba(196, 30, 58, 0.02) 100%);
-  border: 1px solid rgba(196, 30, 58, 0.1);
+  border: none;
   z-index: 0;
   animation: subtle-rotate 120s linear infinite;
 }
@@ -549,7 +539,7 @@ body {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 400px;
+  max-width: 520px;
   aspect-ratio: 1;
 }
 
@@ -557,7 +547,7 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -567,10 +557,10 @@ body {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 8px 24px rgba(196, 30, 58, 0.3));
+  filter: drop-shadow(0 12px 32px rgba(196, 30, 58, 0.25));
 }
 
-.gear-circles {
+.focus-icons-ring {
   position: absolute;
   top: 0;
   left: 0;
@@ -608,12 +598,9 @@ body {
 }
 
 .info-icon {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
+  font-size: 4.5rem;
   display: block;
   min-width: 80px;
-  border-radius: var(--border-radius-md);
   animation: float-icon 3s ease-in-out infinite;
 }
 
@@ -655,13 +642,13 @@ body {
   line-height: 1.7;
   opacity: 0.85;
   margin: var(--spacing-lg) 0;
-  animation: slideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: slideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: translateY(15px);
+    transform: translateY(20px);
   }
   to {
     opacity: 0.85;
@@ -1028,12 +1015,16 @@ body {
   }
 
   .gear-left {
-    height: 380px;
+    height: 420px;
   }
 
   .gear-background {
-    width: 360px;
-    height: 360px;
+    width: 400px;
+    height: 400px;
+  }
+
+  .gear-wrapper {
+    max-width: 400px;
   }
 
   .focus-info-panel {
@@ -1074,12 +1065,16 @@ body {
   }
 
   .gear-left {
-    height: 300px;
+    height: 340px;
   }
 
   .gear-background {
-    width: 280px;
-    height: 280px;
+    width: 320px;
+    height: 320px;
+  }
+
+  .gear-wrapper {
+    max-width: 320px;
   }
 
   .focus-info-panel {
@@ -1093,7 +1088,7 @@ body {
   }
 
   .info-icon {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
   }
 
   .info-title {
@@ -1110,14 +1105,8 @@ body {
     padding: var(--spacing-md);
   }
 
-  .impact-card-icon-wrapper {
-    width: 80px;
-    height: 80px;
-  }
-
   .impact-card-icon {
-    width: 100%;
-    height: 100%;
+    font-size: 3rem;
   }
 
   .impact-card-number {
@@ -1126,12 +1115,6 @@ body {
 
   .impact-card-title {
     font-size: 1.3rem;
-  }
-
-  .info-icon {
-    width: 70px;
-    height: 70px;
-    min-width: 70px;
   }
 
   .mission-vision-container {
