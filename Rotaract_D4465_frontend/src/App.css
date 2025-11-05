@@ -1110,8 +1110,14 @@ body {
     padding: var(--spacing-md);
   }
 
+  .impact-card-icon-wrapper {
+    width: 80px;
+    height: 80px;
+  }
+
   .impact-card-icon {
-    font-size: 2.8rem;
+    width: 100%;
+    height: 100%;
   }
 
   .impact-card-number {
@@ -1120,6 +1126,12 @@ body {
 
   .impact-card-title {
     font-size: 1.3rem;
+  }
+
+  .info-icon {
+    width: 70px;
+    height: 70px;
+    min-width: 70px;
   }
 
   .mission-vision-container {
