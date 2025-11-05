@@ -9,37 +9,37 @@ const App = () => {
   const rotaryFocuses = [
     {
       title: 'Paz y Prevención/Resolución de Conflictos',
-      icon: 'https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?w=56&h=56&fit=crop',
+      icon: '☮️',
       description: 'Promovemos la paz y el entendimiento entre comunidades.'
     },
     {
       title: 'Prevención y Tratamiento de Enfermedades',
-      icon: 'https://images.unsplash.com/photo-1576091160550-112173faf246?w=56&h=56&fit=crop',
+      icon: '⚕️',
       description: 'Apoyamos la salud y el bienestar de las comunidades.'
     },
     {
       title: 'Agua y Saneamiento',
-      icon: 'https://images.unsplash.com/photo-1580274455191-1c62238fa333?w=56&h=56&fit=crop',
+      icon: '💧',
       description: 'Garantizamos el acceso a agua potable y saneamiento básico.'
     },
     {
       title: 'Salud Materno Infantil',
-      icon: 'https://images.unsplash.com/photo-1576091160550-112173faf246?w=56&h=56&fit=crop',
+      icon: '👨‍👩‍👧‍👦',
       description: 'Protegemos la salud de madres e hijos.'
     },
     {
       title: 'Educación Básica y Alfabetización',
-      icon: 'https://images.unsplash.com/photo-1427504494785-cdabad0c0c51?w=56&h=56&fit=crop',
+      icon: '📚',
       description: 'Fomentamos la educación de calidad para todos.'
     },
     {
       title: 'Desarrollo Económico Comunitario',
-      icon: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=56&h=56&fit=crop',
+      icon: '💼',
       description: 'Impulsamos el crecimiento económico sostenible.'
     },
     {
       title: 'Medio Ambiente',
-      icon: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=56&h=56&fit=crop',
+      icon: '🌱',
       description: 'Protegemos nuestro planeta para las futuras generaciones.'
     }
   ];
@@ -127,9 +127,7 @@ const App = () => {
         <h2 className="section-title-dark">Nuestro Impacto en Números</h2>
         <div className="impact-cards-grid">
           <div className="impact-card">
-            <div className="impact-card-icon-wrapper">
-              <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=80&h=80&fit=crop" alt="Miembros" className="impact-card-icon" />
-            </div>
+            <div className="impact-card-icon">👥</div>
             <div className="impact-card-content">
               <h3 className="impact-card-title">Miembros Activos</h3>
               <p className="impact-card-number">1,200+</p>
@@ -138,9 +136,7 @@ const App = () => {
           </div>
 
           <div className="impact-card">
-            <div className="impact-card-icon-wrapper">
-              <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=80&h=80&fit=crop" alt="Clubes" className="impact-card-icon" />
-            </div>
+            <div className="impact-card-icon">🏢</div>
             <div className="impact-card-content">
               <h3 className="impact-card-title">Clubes</h3>
               <p className="impact-card-number">45+</p>
@@ -149,9 +145,7 @@ const App = () => {
           </div>
 
           <div className="impact-card">
-            <div className="impact-card-icon-wrapper">
-              <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=80&h=80&fit=crop" alt="Proyectos" className="impact-card-icon" />
-            </div>
+            <div className="impact-card-icon">🎯</div>
             <div className="impact-card-content">
               <h3 className="impact-card-title">Proyectos Anuales</h3>
               <p className="impact-card-number">150+</p>
@@ -223,34 +217,34 @@ const App = () => {
                     alt="Rotary Gear"
                     className="gear-image"
                   />
-                  <svg className="gear-circles" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="200" cy="200" r="180" fill="none" stroke="#C41E3A" strokeWidth="1" opacity="0.2"/>
-                    <circle cx="200" cy="200" r="160" fill="none" stroke="#C41E3A" strokeWidth="1" opacity="0.15"/>
-
-                    {rotaryFocuses.map((_, index) => {
+                  <svg className="focus-icons-ring" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                    {rotaryFocuses.map((focus, index) => {
                       const angle = (index * 360) / rotaryFocuses.length;
-                      const radius = 135;
+                      const radius = 155;
                       const x = 200 + radius * Math.cos((angle - 90) * Math.PI / 180);
                       const y = 200 + radius * Math.sin((angle - 90) * Math.PI / 180);
                       const isActive = currentFocus === index;
                       return (
                         <g key={index}>
                           <circle
-                            cx={x} cy={y} r="40"
+                            cx={x} cy={y} r="38"
                             fill={isActive ? '#C41E3A' : '#FFF'}
                             stroke="#C41E3A"
-                            strokeWidth="3"
-                            opacity={isActive ? 1 : 0.9}
-                            style={{transition: 'all 0.6s ease'}}
+                            strokeWidth="2.5"
+                            opacity={isActive ? 1 : 0.85}
+                            style={{transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)'}}
                           />
-                          <image
-                            x={x - 14}
-                            y={y - 14}
-                            width="28"
-                            height="28"
-                            href={rotaryFocuses[index].icon}
-                            style={{transition: 'opacity 0.6s ease'}}
-                          />
+                          <text
+                            x={x} y={y}
+                            textAnchor="middle"
+                            dy="0.35em"
+                            fontSize="24"
+                            fontWeight="bold"
+                            fill={isActive ? '#FFF' : '#C41E3A'}
+                            style={{transition: 'fill 0.8s cubic-bezier(0.4, 0, 0.2, 1)'}}
+                          >
+                            {focus.icon}
+                          </text>
                         </g>
                       );
                     })}
@@ -262,7 +256,7 @@ const App = () => {
             <div className="gear-right">
               <div className="focus-info-panel">
                 <div className="info-header">
-                  <img src={rotaryFocuses[currentFocus].icon} alt={rotaryFocuses[currentFocus].title} className="info-icon" />
+                  <span className="info-icon">{rotaryFocuses[currentFocus].icon}</span>
                   <div className="info-text">
                     <h3 className="info-title">{rotaryFocuses[currentFocus].title}</h3>
                     <span className="area-badge">Área {currentFocus + 1} de {rotaryFocuses.length}</span>
